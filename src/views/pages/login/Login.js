@@ -1,5 +1,8 @@
 import React from 'react'
-import { Link } from 'react-router-dom'
+
+import Authentication from "../../../callAPI/Authentication.api"
+
+import { Link, useHistory, useLocation } from 'react-router-dom'
 import {
   CButton,
   CCard,
@@ -16,7 +19,25 @@ import {
 } from '@coreui/react'
 import CIcon from '@coreui/icons-react'
 
-const Login = () => {
+const Login = (props) => {
+
+  const {setIsLogged}=props;
+
+  const history = useHistory();
+  const location = useLocation();
+  const { from } = location.state || { from: { pathname: "/" } };
+
+  const onLogin = async() => {
+      const res=await Authentication.login({username:"truong123",password:"1234"})
+      if(res.data.ms&&"LOGIN_THANH_CONG"===res.data.ms){
+        setIsLogged(true)
+        history.replace(from);
+      }
+      
+   
+  };
+
+
   return (
     <div className="c-app c-default-layout flex-row align-items-center">
       <CContainer>
@@ -46,7 +67,7 @@ const Login = () => {
                     </CInputGroup>
                     <CRow>
                       <CCol xs="6">
-                        <CButton color="primary" className="px-4">Login</CButton>
+                        <CButton onClick={onLogin} color="primary" className="px-4">Login</CButton>
                       </CCol>
                       <CCol xs="6" className="text-right">
                         <CButton color="link" className="px-0">Forgot password?</CButton>
