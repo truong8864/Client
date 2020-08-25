@@ -19,12 +19,10 @@ import {
 const useStyles = makeStyles((theme) => ({
   root: {
     flexGrow: 1,
-    paddingTop: theme.spacing(2),
+    paddingTop: theme.spacing(1),
   },
   paper: {
     padding: theme.spacing(1),
-    paddingTop: theme.spacing(1),
-    //textAlign: "center",
   },
   date: {
     width: theme.spacing(24),
@@ -241,7 +239,7 @@ const Search = (props) => {
             <Grid item xs={5}>
               <FormControl fullWidth>
                 Ngày vào làm
-                <div style={{ paddingTop: "10px" }}>
+                <div style={{ paddingTop: "8px" }}>
                   <KeyboardDatePicker
                     inputVariant="outlined"
                     clearable
@@ -249,8 +247,7 @@ const Search = (props) => {
                     size="small"
                     fullWidth={false}
                     className={classes.date}
-                    emptyLabel="Chọn ngày..."
-                    format="MM/dd/yyyy"
+                    format="dd/MM/yyyy"
                     value={
                       !Filter.DateHire
                         ? null
@@ -271,7 +268,7 @@ const Search = (props) => {
                           ...Filter,
                           ...{ DateHire: { ...Filter.DateHire, $gt: date } },
                         });
-                      if (!Filter.DateHire["$lte"]) {
+                      if (!Filter.DateHire) {
                         const { DateHire, ...FilterNew } = Filter;
                         return setFilter(FilterNew);
                       }
@@ -294,8 +291,7 @@ const Search = (props) => {
                     }
                     maxDate={new Date()}
                     label="Đến ngày"
-                    emptyLabel="Chọn ngày..."
-                    format="MM/dd/yyyy"
+                    format="dd/MM/yyyy"
                     value={
                       !Filter.DateHire
                         ? null
@@ -309,7 +305,7 @@ const Search = (props) => {
                           ...Filter,
                           ...{ DateHire: { ...Filter.DateHire, $lte: date } },
                         });
-                      if (!Filter.DateHire["$gt"]) {
+                      if (!Filter.DateHire) {
                         const { DateHire, ...FilterNew } = Filter;
                         return setFilter(FilterNew);
                       }

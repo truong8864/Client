@@ -38,6 +38,8 @@ const Content = (props) => {
         pagination
         itemsPerPage={15}
         border
+        hover
+        striped
         size="sm"
         //onRowClick={handleClick}
       />

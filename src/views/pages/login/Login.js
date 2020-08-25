@@ -1,6 +1,6 @@
 import React from 'react'
 
-import Authentication from "../../../callAPI/Authentication.api"
+import authentication from "../../../api/authentication.api"
 
 import { Link, useHistory, useLocation } from 'react-router-dom'
 import {
@@ -28,8 +28,8 @@ const Login = (props) => {
   const { from } = location.state || { from: { pathname: "/" } };
 
   const onLogin = async() => {
-      const res=await Authentication.login({username:"truong123",password:"1234"})
-      if(res.data.ms&&"LOGIN_THANH_CONG"===res.data.ms){
+      const res=await authentication.login({username:"truong",password:"123"})
+      if(res.ms&&"LOGIN_THANH_CONG"===res.ms){
         setIsLogged(true)
         history.replace(from);
       }

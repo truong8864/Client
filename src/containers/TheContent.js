@@ -7,7 +7,7 @@ import {
 import { CContainer, CFade } from '@coreui/react'
 
 
-import AuthenticationAPI from "../callAPI/Authentication.api"
+import AuthenticationAPI from "../api/authentication.api"
 
 // routes config
 import routes from '../routes'
@@ -17,16 +17,17 @@ import routes from '../routes'
 const PrivateRoute=  ({component: Component, IsLogged,setIsLogged, ...rest})=> {
 
     useEffect(()=>{
-      try {
-        const fetchAPI= async()=>{
-          const res= await AuthenticationAPI.checkLogged()
-          if("DA_DANG_NHAP"===res.data.ms)return
-          else setIsLogged(false)
-        }    
-        fetchAPI()
+      const fetchAPI= async()=>{      
+      try {  
+        const res= await AuthenticationAPI.checkLogged()
+        if("DA_DANG_NHAP"===res.ms)return
+        else setIsLogged(false)      
       } catch (error) {
+        setIsLogged(false) 
         console.log("TheContent AuthenticationAPI ERR")
-      }
+      }    
+    } 
+    fetchAPI()      
   },[setIsLogged])
 
   return (

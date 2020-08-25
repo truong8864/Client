@@ -1,7 +1,6 @@
 import React, { Component } from 'react';
 import { HashRouter, Route, Switch } from 'react-router-dom';
 
-
 import './scss/style.scss';
 
 const loading = (
@@ -33,7 +32,6 @@ class App extends Component {
       IsLogged:IsLogged
     })
   }
-
 
   render() { 
     return (
