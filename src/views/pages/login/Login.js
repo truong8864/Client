@@ -28,8 +28,8 @@ const Login = (props) => {
 
   const onLogin = async () => {
     const res = await authentication.login({
-      username: "truong",
-      password: "123",
+      username: "truong8864",
+      password: "thienthan1",
     });
 
     console.log(res);
