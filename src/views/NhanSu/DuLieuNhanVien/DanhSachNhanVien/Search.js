@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import React, { useState, useContext } from "react";
 
 import { Autocomplete } from "@material-ui/lab";
 
@@ -16,6 +16,8 @@ import {
   KeyboardDatePicker,
 } from "@material-ui/pickers";
 
+import CategoryContext from "../../../../containers/CategoryContext";
+
 const useStyles = makeStyles((theme) => ({
   root: {
     flexGrow: 1,
@@ -28,13 +30,24 @@ const useStyles = makeStyles((theme) => ({
     width: theme.spacing(24),
     marginRight: theme.spacing(2),
   },
+  display: {
+    display: "grid",
+  },
+  paddingL: {
+    paddingLeft: "4px",
+  },
+  paddingR: {
+    paddingRight: "4px",
+  },
 }));
 
 const Search = (props) => {
   const classes = useStyles();
   const { Filter, setFilter } = props;
 
-  const [ListOrgStructure, setListOrgStructure] = useState(initOrgStructure);
+  const Category = useContext(CategoryContext);
+
+  console.log("CATEGORY", Category);
 
   return (
     <Grid className={classes.root} container spacing={1}>
@@ -125,7 +138,7 @@ const Search = (props) => {
               multiple
               limitTags={3}
               defaultValue={[]}
-              options={ListOrgStructure}
+              options={Category.OrgStructure}
               getOptionLabel={(option) =>
                 `${option.OrgStructureName}-${option.Code}`
               }
@@ -235,88 +248,146 @@ const Search = (props) => {
       </Grid>
       {
         <Grid className={classes.paper} container spacing={2}>
-          <MuiPickersUtilsProvider utils={DateFnsUtils}>
-            <Grid item xs={5}>
-              <FormControl fullWidth>
-                Ngày vào làm
-                <div style={{ paddingTop: "8px" }}>
-                  <KeyboardDatePicker
-                    inputVariant="outlined"
-                    clearable
-                    label="Từ ngày"
-                    size="small"
-                    fullWidth={false}
-                    className={classes.date}
-                    format="dd/MM/yyyy"
-                    value={
-                      !Filter.DateHire
-                        ? null
-                        : !Filter.DateHire["$gt"]
-                        ? null
-                        : Filter.DateHire["$gt"]
-                    }
-                    maxDate={
-                      !Filter.DateHire
-                        ? new Date()
-                        : !Filter.DateHire["$lte"]
-                        ? new Date()
-                        : Filter.DateHire["$lte"]
-                    }
-                    onChange={(date) => {
-                      if (null !== date)
-                        return setFilter({
-                          ...Filter,
-                          ...{ DateHire: { ...Filter.DateHire, $gt: date } },
-                        });
-                      if (!Filter.DateHire) {
-                        const { DateHire, ...FilterNew } = Filter;
-                        return setFilter(FilterNew);
-                      }
-                      const { $gt, ...DateHireNew } = Filter.DateHire;
-                      setFilter({ ...Filter, DateHire: DateHireNew });
-                    }}
-                  />
-                  <KeyboardDatePicker
-                    inputVariant="outlined"
-                    clearable
-                    size="small"
-                    fullWidth={false}
-                    className={classes.date}
-                    minDate={
-                      !Filter.DateHire
-                        ? 0
-                        : !Filter.DateHire["$gt"]
-                        ? 0
-                        : Filter.DateHire["$gt"]
-                    }
-                    maxDate={new Date()}
-                    label="Đến ngày"
-                    format="dd/MM/yyyy"
-                    value={
-                      !Filter.DateHire
-                        ? null
-                        : !Filter.DateHire["$lte"]
-                        ? null
-                        : Filter.DateHire["$lte"]
-                    }
-                    onChange={(date) => {
-                      if (null !== date)
-                        return setFilter({
-                          ...Filter,
-                          ...{ DateHire: { ...Filter.DateHire, $lte: date } },
-                        });
-                      if (!Filter.DateHire) {
-                        const { DateHire, ...FilterNew } = Filter;
-                        return setFilter(FilterNew);
-                      }
-                      const { $lte, ...DateHireNew } = Filter.DateHire;
-                      setFilter({ ...Filter, DateHire: DateHireNew });
-                    }}
-                  />
-                </div>
-              </FormControl>
-            </Grid>
-          </MuiPickersUtilsProvider>
+          <Grid className={classes.display} item xs={6}>
+            <div> Ngày vào làm</div>
+            <div>
+              <TextField
+                label="Ngày"
+                value={Document.SalaryContract}
+                inputProps={{
+                  type: "number",
+                  min: 0,
+                  max: 31,
+                }}
+                // InputProps={
+                //   {
+                //     endAdornment: <InputAdornment position="end">VNĐ/Tháng</InputAdornment>
+                //   }
+                // }
+                variant="outlined"
+                size="small"
+                fullWidth={false}
+              />
+              <TextField
+                label="Tháng"
+                className={classes.paddingL}
+                value={Document.SalaryContract}
+                inputProps={{
+                  type: "number",
+                  min: 1,
+                  max: 12,
+                }}
+                // InputProps={
+                //   {
+                //     endAdornment: <InputAdornment position="end">VNĐ/Tháng</InputAdornment>
+                //   }
+                // }
+                variant="outlined"
+                size="small"
+                fullWidth={false}
+              />
+              <TextField
+                label="Năm"
+                className={classes.paddingL}
+                value={Document.SalaryContract}
+                inputProps={{
+                  type: "number",
+                  min: 1970,
+                  max: 2020,
+                }}
+                // InputProps={
+                //   {
+                //     endAdornment: <InputAdornment position="end">VNĐ/Tháng</InputAdornment>
+                //   }
+                // }
+                variant="outlined"
+                size="small"
+                fullWidth={false}
+              />
+            </div>
+            {
+              // <MuiPickersUtilsProvider utils={DateFnsUtils}>
+              //   <FormControl fullWidth>
+              //     Ngày vào làm
+              //     <div style={{ paddingTop: "8px" }}>
+              //       <KeyboardDatePicker
+              //         inputVariant="outlined"
+              //         clearable
+              //         label="Từ ngày"
+              //         size="small"
+              //         fullWidth={false}
+              //         className={classes.date}
+              //         format="dd/MM/yyyy"
+              //         value={
+              //           !Filter.DateHire
+              //             ? null
+              //             : !Filter.DateHire["$gt"]
+              //             ? null
+              //             : Filter.DateHire["$gt"]
+              //         }
+              //         maxDate={
+              //           !Filter.DateHire
+              //             ? new Date()
+              //             : !Filter.DateHire["$lte"]
+              //             ? new Date()
+              //             : Filter.DateHire["$lte"]
+              //         }
+              //         onChange={(date) => {
+              //           if (null !== date)
+              //             return setFilter({
+              //               ...Filter,
+              //               ...{ DateHire: { ...Filter.DateHire, $gt: date } },
+              //             });
+              //           if (!Filter.DateHire) {
+              //             const { DateHire, ...FilterNew } = Filter;
+              //             return setFilter(FilterNew);
+              //           }
+              //           const { $gt, ...DateHireNew } = Filter.DateHire;
+              //           setFilter({ ...Filter, DateHire: DateHireNew });
+              //         }}
+              //       />
+              //       <KeyboardDatePicker
+              //         inputVariant="outlined"
+              //         clearable
+              //         size="small"
+              //         fullWidth={false}
+              //         className={classes.date}
+              //         minDate={
+              //           !Filter.DateHire
+              //             ? 0
+              //             : !Filter.DateHire["$gt"]
+              //             ? 0
+              //             : Filter.DateHire["$gt"]
+              //         }
+              //         maxDate={new Date()}
+              //         label="Đến ngày"
+              //         format="dd/MM/yyyy"
+              //         value={
+              //           !Filter.DateHire
+              //             ? null
+              //             : !Filter.DateHire["$lte"]
+              //             ? null
+              //             : Filter.DateHire["$lte"]
+              //         }
+              //         onChange={(date) => {
+              //           if (null !== date)
+              //             return setFilter({
+              //               ...Filter,
+              //               ...{ DateHire: { ...Filter.DateHire, $lte: date } },
+              //             });
+              //           if (!Filter.DateHire) {
+              //             const { DateHire, ...FilterNew } = Filter;
+              //             return setFilter(FilterNew);
+              //           }
+              //           const { $lte, ...DateHireNew } = Filter.DateHire;
+              //           setFilter({ ...Filter, DateHire: DateHireNew });
+              //         }}
+              //       />
+              //     </div>
+              //   </FormControl>
+              // </MuiPickersUtilsProvider>
+            }
+          </Grid>
         </Grid>
       }
     </Grid>
