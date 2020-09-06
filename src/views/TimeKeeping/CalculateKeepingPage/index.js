@@ -8,10 +8,10 @@ import Search from "./Search.Component";
 import ToolBar from "./ToolBar.Component";
 import Content from "./Content.Component";
 
-import DayKeepingAPI from "../../../api/att_day_keeping.api";
-import TimeKeepingGroupAPI from "../../../api/att_time_keeping_group.api";
+// import DayKeepingAPI from "../../../api/att_day_keeping.api";
+// import TimeKeepingGroupAPI from "../../../api/att_time_keeping_group.api";
 
-import { getDays } from "../../Staff/utils/table.utils";
+// import { getDays } from "../../Staff/utils/table.utils";
 
 const useStyles = makeStyles((theme) => ({
   root: {
@@ -51,10 +51,10 @@ const CalculateKeepingPage = () => {
       -2
     )}/${Filter.KiCong.getFullYear()}`;
     setLoading(true);
-    await DayKeepingAPI.synthesis({
-      ...Filter,
-      KiCong: strKiCong,
-    });
+    // await DayKeepingAPI.synthesis({
+    //   ...Filter,
+    //   KiCong: strKiCong,
+    // });
 
     setCurrentPage(1);
     fetchData();
@@ -69,20 +69,20 @@ const CalculateKeepingPage = () => {
       )}/${Filter.KiCong.getFullYear()}`;
 
       setLoading(true);
-      const result = await TimeKeepingGroupAPI.get({
-        filters: { ...filters, KiCong: strKiCong },
-        page: page,
-      });
-      if (result.data) {
-        console.log(result.data);
-        const { data, meta } = result;
-        const { totalDocuments, totalPages } = meta;
-        setListDataTimeKeeping(data);
-        setPerPage(totalPages);
-        setTotal(totalDocuments);
-        setLoading(false);
-        return;
-      }
+      // const result = await TimeKeepingGroupAPI.get({
+      //   filters: { ...filters, KiCong: strKiCong },
+      //   page: page,
+      // });
+      // if (result.data) {
+      //   console.log(result.data);
+      //   const { data, meta } = result;
+      //   const { totalDocuments, totalPages } = meta;
+      //   setListDataTimeKeeping(data);
+      //   setPerPage(totalPages);
+      //   setTotal(totalDocuments);
+      //   setLoading(false);
+      //   return;
+      // }
       setListDataTimeKeeping([]);
       setLoading(false);
     } catch (error) {
@@ -105,30 +105,32 @@ const CalculateKeepingPage = () => {
 
       <Grid item xs={12}>
         <Paper className={classes.content}>
-          <Content
-            fields={fields}
-            data={ListDataTimeKeeping}
-            setCurrentPage={setCurrentPage}
-            fetchData={fetchData}
-            Loading={Loading}
-            PerPage={PerPage}
-            totalDocuments={Total}
-            CurrentPage={CurrentPage}
-            scopedSlots={{
-              TotalKeepingReality: (item) => {
-                return <td>{`${getDays(item.TotalKeepingReality)} ngày `}</td>;
-              },
-              SabbaticalLeave: (item) => {
-                return <td>{`${getDays(item.SabbaticalLeave)} ngày`}</td>;
-              },
-              UnSabbaticalLeave: (item) => {
-                return <td>{`${getDays(item.UnSabbaticalLeave)} ngày`}</td>;
-              },
-              SumKeeping: (item) => {
-                return <td>{`${getDays(item.SumKeeping)} ngày`}</td>;
-              },
-            }}
-          />
+          {
+            // <Content
+            //   fields={fields}
+            //   data={ListDataTimeKeeping}
+            //   setCurrentPage={setCurrentPage}
+            //   fetchData={fetchData}
+            //   Loading={Loading}
+            //   PerPage={PerPage}
+            //   totalDocuments={Total}
+            //   CurrentPage={CurrentPage}
+            //   scopedSlots={{
+            //     TotalKeepingReality: (item) => {
+            //       return <td>{`${getDays(item.TotalKeepingReality)} ngày `}</td>;
+            //     },
+            //     SabbaticalLeave: (item) => {
+            //       return <td>{`${getDays(item.SabbaticalLeave)} ngày`}</td>;
+            //     },
+            //     UnSabbaticalLeave: (item) => {
+            //       return <td>{`${getDays(item.UnSabbaticalLeave)} ngày`}</td>;
+            //     },
+            //     SumKeeping: (item) => {
+            //       return <td>{`${getDays(item.SumKeeping)} ngày`}</td>;
+            //     },
+            //   }}
+            // />
+          }
         </Paper>
       </Grid>
     </Grid>
