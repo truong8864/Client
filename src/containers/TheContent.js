@@ -1,11 +1,8 @@
-import React, { Suspense, useEffect, useState } from "react";
+import React, { Suspense, useEffect } from "react";
 import { Redirect, Route, Switch } from "react-router-dom";
 import { CContainer, CFade } from "@coreui/react";
 
 import AuthenticationAPI from "../api2/authentication.api";
-import OrgStructureAPI from "../api2/org_structure.api";
-
-import { CategoryProvider } from "./CategoryContext2";
 
 // routes config
 import routes from "../routes";
@@ -58,54 +55,31 @@ const loading = (
 const TheContent = (props) => {
   const { IsLogged, setIsLogged } = props;
 
-  const [OrgStructure, setOrgStructure] = useState([]);
-  const [Position, setPosition] = useState([]);
-
-  useEffect(() => {
-    const fetchCategory = async () => {
-      const resOrgStructure = await OrgStructureAPI.get({
-        fields: {
-          Code: 1,
-          ID: 1,
-          OrgStructureName: 1,
-        },
-        all: 1,
-      });
-      console.log("DATA", resOrgStructure.data);
-      setOrgStructure(resOrgStructure.data);
-    };
-    fetchCategory();
-  }, []);
-
   return (
-    <CategoryProvider
-      value={{ Position: Position, OrgStructure: OrgStructure }}
-    >
-      <main className="c-main">
-        <CContainer fluid>
-          <Suspense fallback={loading}>
-            <Switch>
-              {routes.map((route, idx) => {
-                return (
-                  route.component && (
-                    <PrivateRoute
-                      key={idx}
-                      path={route.path}
-                      exact={route.exact}
-                      name={route.name}
-                      IsLogged={IsLogged}
-                      setIsLogged={setIsLogged}
-                      component={route.component}
-                    />
-                  )
-                );
-              })}
-              <Redirect from="/" to="/dashboard" />
-            </Switch>
-          </Suspense>
-        </CContainer>
-      </main>
-    </CategoryProvider>
+    <main className="c-main">
+      <CContainer fluid>
+        <Suspense fallback={loading}>
+          <Switch>
+            {routes.map((route, idx) => {
+              return (
+                route.component && (
+                  <PrivateRoute
+                    key={idx}
+                    path={route.path}
+                    exact={route.exact}
+                    name={route.name}
+                    IsLogged={IsLogged}
+                    setIsLogged={setIsLogged}
+                    component={route.component}
+                  />
+                )
+              );
+            })}
+            <Redirect from="/" to="/dashboard" />
+          </Switch>
+        </Suspense>
+      </CContainer>
+    </main>
   );
 };
 
