@@ -10,6 +10,9 @@ import OrgStructureTreeAPI from "../api/cat_org_structure_tree.api";
 import PositionAPI from "../api/cat_position.api";
 
 import { makeStyles } from "@material-ui/core/styles";
+import { CSubheader, CBreadcrumbRouter } from "@coreui/react";
+
+import routes from "../routes";
 
 const useStyles = makeStyles((theme) => ({
   root: {
@@ -82,6 +85,12 @@ const TheLayout = (props) => {
         <div className="c-wrapper">
           <TheHeader />
           <div className="c-body">
+            <CSubheader className="px-3 justify-content-between">
+              <CBreadcrumbRouter
+                className="border-0 c-subheader-nav m-0 px-0 px-md-3"
+                routes={routes}
+              />
+            </CSubheader>
             <TheContent IsLogged={IsLogged} setIsLogged={setIsLogged} />
           </div>
           <TheFooter />
