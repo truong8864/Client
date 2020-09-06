@@ -57,7 +57,9 @@ const TheContent = (props) => {
   const { IsLogged, setIsLogged } = props;
 
   return (
-    <main className="c-main">
+    <main
+    //className="c-main"
+    >
       <Container disableGutters maxWidth={false}>
         <Suspense fallback={loading}>
           <Switch>
