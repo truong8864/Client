@@ -1,15 +1,14 @@
 import React, { Suspense, useEffect, useState } from "react";
 import { Redirect, Route, Switch } from "react-router-dom";
-import { CFade } from "@coreui/react";
+import { CContainer, CFade } from "@coreui/react";
 
-import AuthenticationAPI from "../api/authentication.api";
-import OrgStructureAPI from "../api/org_structure.api";
+import AuthenticationAPI from "../api2/authentication.api";
+import OrgStructureAPI from "../api2/org_structure.api";
 
-import { CategoryProvider } from "./CategoryContext";
+import { CategoryProvider } from "./CategoryContext2";
 
 // routes config
 import routes from "../routes";
-import { Container } from "@material-ui/core";
 
 const PrivateRoute = ({
   component: Component,
@@ -83,7 +82,7 @@ const TheContent = (props) => {
       value={{ Position: Position, OrgStructure: OrgStructure }}
     >
       <main className="c-main">
-        <Container disableGutters maxWidth={false}>
+        <CContainer fluid>
           <Suspense fallback={loading}>
             <Switch>
               {routes.map((route, idx) => {
@@ -104,7 +103,7 @@ const TheContent = (props) => {
               <Redirect from="/" to="/dashboard" />
             </Switch>
           </Suspense>
-        </Container>
+        </CContainer>
       </main>
     </CategoryProvider>
   );
