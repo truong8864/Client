@@ -2,7 +2,7 @@ import React, { Suspense, useEffect } from "react";
 import { Redirect, Route, Switch } from "react-router-dom";
 import { CContainer, CFade } from "@coreui/react";
 
-import AuthenticationAPI from "../api2/authentication.api";
+import AuthenticationAPI from "../api/authentication.api";
 
 // routes config
 import routes from "../routes";
