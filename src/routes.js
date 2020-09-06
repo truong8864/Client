@@ -3,6 +3,7 @@ import React from "react";
 //import RouteNhanSu from "./views/NhanSu/route";
 import RouteTimeKeeping from "./views/TimeKeeping/routes";
 import RouteStaff from "./views/Staff/routes";
+import RouteSalary from "./views/Salary/routes";
 
 const Toaster = React.lazy(() =>
   import("./views/notifications/toaster/Toaster")
@@ -68,6 +69,7 @@ const routes = [
   //...RouteNhanSu,
   ...RouteStaff,
   ...RouteTimeKeeping,
+  ...RouteSalary,
   { path: "/", exact: true, name: "Home" },
   { path: "/dashboard", name: "Dashboard", component: Dashboard },
   { path: "/theme", name: "Theme", component: Colors, exact: true },

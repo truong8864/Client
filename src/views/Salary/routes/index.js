@@ -1,3 +1,5 @@
+import React from "react";
+
 const PayrollPage = React.lazy(() => import("../PayrollPage"));
 const SalaryPage = React.lazy(() => import("../SalaryPage"));
 
