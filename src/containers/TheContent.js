@@ -21,9 +21,9 @@ const PrivateRoute = ({
       try {
         const res = await AuthenticationAPI.checkLogged();
         if ("DA_DANG_NHAP" === res.message) return;
-        else setIsLogged(false);
+        else setIsLogged(true);
       } catch (error) {
-        setIsLogged(false);
+        setIsLogged(true);
         console.log("TheContent AuthenticationAPI ERR");
       }
     };
