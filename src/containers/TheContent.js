@@ -1,11 +1,12 @@
 import React, { Suspense, useEffect } from "react";
 import { Redirect, Route, Switch } from "react-router-dom";
-import { CContainer, CFade } from "@coreui/react";
+import { CFade } from "@coreui/react";
 
 import AuthenticationAPI from "../api/authentication.api";
 
 // routes config
 import routes from "../routes";
+import { Container } from "@material-ui/core";
 
 const PrivateRoute = ({
   component: Component,
@@ -57,7 +58,7 @@ const TheContent = (props) => {
 
   return (
     <main className="c-main">
-      <CContainer fluid>
+      <Container disableGutters maxWidth={false}>
         <Suspense fallback={loading}>
           <Switch>
             {routes.map((route, idx) => {
@@ -78,7 +79,7 @@ const TheContent = (props) => {
             <Redirect from="/" to="/dashboard" />
           </Switch>
         </Suspense>
-      </CContainer>
+      </Container>
     </main>
   );
 };
