@@ -20,10 +20,10 @@ const PrivateRoute = ({
     const fetchAPI = async () => {
       try {
         const res = await AuthenticationAPI.checkLogged();
-        if ("DA_DANG_NHAP" === res.message) return;
-        else setIsLogged(true);
+        if ("DA_DANG_NHAP" === res.message) return setIsLogged(true);
+        else setIsLogged(false);
       } catch (error) {
-        setIsLogged(true);
+        setIsLogged(false);
         console.log("TheContent AuthenticationAPI ERR");
       }
     };
@@ -48,12 +48,6 @@ const PrivateRoute = ({
     />
   );
 };
-
-const loading = (
-  <div className="pt-3 text-center">
-    <div className="sk-spinner sk-spinner-pulse"></div>
-  </div>
-);
 
 const TheContent = (props) => {
   const { IsLogged, setIsLogged } = props;

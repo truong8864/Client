@@ -11,14 +11,14 @@ import {
   Button,
 } from "@material-ui/core";
 
+import { CSidebarNav } from "@coreui/react";
+
 import Search from "./Search.Component";
 import ToolBar from "./ToolBar.Component";
 import Content from "./Content.Component";
 import Detail from "./Detail.Component";
 
-import TimeKeepingGroupAPI from "../../../api/att_time_keeping_group.api";
-
-import { getDays } from "../../Staff/utils/table.utils";
+import SalaryAPI from "../../../api/att_salary.api";
 
 const useStyles = makeStyles((theme) => ({
   root: {
@@ -30,10 +30,10 @@ const useStyles = makeStyles((theme) => ({
     paddingLeft: theme.spacing(0),
     marginTop: "4px",
   },
-  content: {},
+  content: { height: "75vh", paddingLeft: theme.spacing(1) },
 }));
 
-const TimeKeepingGroupPage = () => {
+const SalaryPage = () => {
   const classes = useStyles();
 
   const [Filter, setFilter] = useState({});
@@ -53,7 +53,8 @@ const TimeKeepingGroupPage = () => {
   };
 
   const onSave = async (id, data) => {
-    const res = await TimeKeepingGroupAPI.update(id, data);
+    const res = await SalaryAPI.update(id, data);
+    console.log(res.data.data);
     setRowsSelected(res.data.data);
     const index = ListDataTimeKeeping.findIndex(
       (item) => item._id === res.data.data._id
@@ -66,7 +67,7 @@ const TimeKeepingGroupPage = () => {
   };
 
   const onDelete = async () => {
-    await TimeKeepingGroupAPI.deleteX(RowsSelected._id);
+    await SalaryAPI.deleteX(RowsSelected._id);
     const index = ListDataTimeKeeping.findIndex(
       (item) => item._id === RowsSelected._id
     );
@@ -89,7 +90,7 @@ const TimeKeepingGroupPage = () => {
       }
 
       setLoading(true);
-      const result = await TimeKeepingGroupAPI.get({
+      const result = await SalaryAPI.get({
         filters: filters,
         page: page,
       });
@@ -125,7 +126,7 @@ const TimeKeepingGroupPage = () => {
       </Grid>
       <Grid item xs={12}>
         <Paper className={classes.toolbar} variant="outlined">
-          <ToolBar  fields={fields} data={ListDataTimeKeeping}
+          <ToolBar
             setConfimDelete={setConfimDelete}
             show={setShowDetail}
             onSearch={onSearch}
@@ -136,32 +137,20 @@ const TimeKeepingGroupPage = () => {
 
       <Grid item xs={12}>
         <Paper className={classes.content}>
-          <Content
-            fields={fields}
-            RowsSelected={RowsSelected}
-            setRowsSelected={setRowsSelected}
-            data={ListDataTimeKeeping}
-            CurrentPage={CurrentPage}
-            setCurrentPage={setCurrentPage}
-            fetchData={fetchData}
-            Loading={Loading}
-            PerPage={PerPage}
-            totalDocuments={Total}
-            scopedSlots={{
-              TotalKeepingReality: (item) => {
-                return <td>{`${getDays(item.TotalKeepingReality)} ngày `}</td>;
-              },
-              SabbaticalLeave: (item) => {
-                return <td>{`${getDays(item.SabbaticalLeave)} ngày`}</td>;
-              },
-              UnSabbaticalLeave: (item) => {
-                return <td>{`${getDays(item.UnSabbaticalLeave)} ngày`}</td>;
-              },
-              SumKeeping: (item) => {
-                return <td>{`${getDays(item.SumKeeping)} ngày`}</td>;
-              },
-            }}
-          />
+          <CSidebarNav>
+            <Content
+              fields={fields}
+              RowsSelected={RowsSelected}
+              setRowsSelected={setRowsSelected}
+              data={ListDataTimeKeeping}
+              CurrentPage={CurrentPage}
+              setCurrentPage={setCurrentPage}
+              fetchData={fetchData}
+              Loading={Loading}
+              PerPage={PerPage}
+              totalDocuments={Total}
+            />
+          </CSidebarNav>
         </Paper>
       </Grid>
       <Dialog
@@ -169,13 +158,13 @@ const TimeKeepingGroupPage = () => {
         disableBackdropClick={true}
         disableEscapeKeyDown={true}
       >
-        <DialogTitle>XAC NHAN XOA</DialogTitle>
+        <DialogTitle>Xác nhận xóa</DialogTitle>
         <DialogActions>
           <Button onClick={() => setConfimDelete(false)} color="primary">
-            Khong
+            Không
           </Button>
           <Button onClick={onDelete} color="primary" autoFocus>
-            Co
+            Có
           </Button>
         </DialogActions>
       </Dialog>
@@ -183,7 +172,7 @@ const TimeKeepingGroupPage = () => {
   );
 };
 
-export default TimeKeepingGroupPage;
+export default SalaryPage;
 
 const fields = [
   { _style: { width: "80px" }, key: "KiCong", label: "Kì công" },
@@ -192,29 +181,25 @@ const fields = [
   { _style: { width: "120px" }, key: "CodeEmp", label: "Mã nhân viên" },
   { _style: { width: "200px" }, key: "ProfileName", label: "Tên nhân viên" },
   {
-    _style: { width: "250px" },
+    _style: { width: "300px" },
     key: "OrgStructureName",
     label: "Phòng ban",
   },
   {
     _style: { width: "150px" },
     key: "TotalKeepingReality",
-    label: "Ngày công thực tế",
+    label: "Số ngày công",
   },
+  //{ _style: { width: "150px" }, key: "StandardDayKeeping ", label: "Ngày công chuẩn" },
   {
     _style: { width: "150px" },
-    key: "SabbaticalLeave",
-    label: "Nghỉ có phép",
+    key: "SalaryContract",
+    label: "Hợp đồng",
   },
-  {
-    _style: { width: "150px" },
-    key: "UnSabbaticalLeave",
-    label: "Nghỉ không phép",
-  },
-  { _style: { width: "150px" }, key: "SumKeeping", label: "Tổng hợp công" },
+  { _style: { width: "150px" }, key: "Salary", label: "Tính lương" },
   { _style: { width: "250px" }, key: "Description", label: "Ghi chú" },
   {
-    _style: { width: "150px" },
+    _style: { width: "250px" },
     key: "Status",
     label: "Trạng thái",
   },

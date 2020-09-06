@@ -1,7 +1,7 @@
 import React, { useContext } from "react";
 
 import { makeStyles } from "@material-ui/core/styles";
-import { FormControl, TextField, Grid, Typography } from "@material-ui/core";
+import { FormControl, Grid, TextField, Typography } from "@material-ui/core";
 
 import "date-fns";
 import DateFnsUtils from "@date-io/date-fns";
@@ -23,6 +23,13 @@ const useStyles = makeStyles((theme) => ({
     padding: theme.spacing(1),
     paddingTop: theme.spacing(1),
     //textAlign: "center",
+  },
+  date1: {
+    width: theme.spacing(26),
+    marginRight: theme.spacing(2),
+  },
+  date2: {
+    width: theme.spacing(26),
   },
 }));
 

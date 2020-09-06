@@ -4,14 +4,14 @@ import { makeStyles } from "@material-ui/core/styles";
 
 import { Grid, Paper } from "@material-ui/core";
 
+import { CSidebarNav } from "@coreui/react";
+
 import Search from "./Search.Component";
 import ToolBar from "./ToolBar.Component";
 import Content from "./Content.Component";
 
-import DayKeepingAPI from "../../../api/att_day_keeping.api";
+import SalaryAPI from "../../../api/att_salary.api";
 import TimeKeepingGroupAPI from "../../../api/att_time_keeping_group.api";
-
-import { getDays } from "../../Staff/utils/table.utils";
 
 const useStyles = makeStyles((theme) => ({
   root: {
@@ -23,10 +23,10 @@ const useStyles = makeStyles((theme) => ({
     paddingLeft: theme.spacing(0),
     marginTop: "4px",
   },
-  content: {},
+  content: { height: "75vh", paddingLeft: theme.spacing(1) },
 }));
 
-const CalculateKeepingPage = () => {
+const PayrollPage = () => {
   const classes = useStyles();
 
   const initDate = new Date();
@@ -42,16 +42,17 @@ const CalculateKeepingPage = () => {
   const [PerPage, setPerPage] = useState(1);
   const [Total, setTotal] = useState(0);
 
-  const TongHopCong = async () => {
+  const TinhLuong = async () => {
     if (!Filter.OrgStructureID) {
       alert("Chưa chọn phòng ban");
       return;
     }
+
     const strKiCong = `${("0" + (Filter.KiCong.getMonth() + 1)).slice(
       -2
     )}/${Filter.KiCong.getFullYear()}`;
     setLoading(true);
-    await DayKeepingAPI.synthesis({
+    await TimeKeepingGroupAPI.payroll({
       ...Filter,
       KiCong: strKiCong,
     });
@@ -69,12 +70,11 @@ const CalculateKeepingPage = () => {
       )}/${Filter.KiCong.getFullYear()}`;
 
       setLoading(true);
-      const result = await TimeKeepingGroupAPI.get({
+      const result = await SalaryAPI.get({
         filters: { ...filters, KiCong: strKiCong },
         page: page,
       });
       if (result.data) {
-        console.log(result.data);
         const { data, meta } = result;
         const { totalDocuments, totalPages } = meta;
         setListDataTimeKeeping(data);
@@ -99,43 +99,31 @@ const CalculateKeepingPage = () => {
       </Grid>
       <Grid item xs={12}>
         <Paper className={classes.toolbar} variant="outlined">
-          <ToolBar TongHopCong={TongHopCong} />
+          <ToolBar TinhLuong={TinhLuong} />
         </Paper>
       </Grid>
 
       <Grid item xs={12}>
         <Paper className={classes.content}>
-          <Content
-            fields={fields}
-            data={ListDataTimeKeeping}
-            setCurrentPage={setCurrentPage}
-            fetchData={fetchData}
-            Loading={Loading}
-            PerPage={PerPage}
-            totalDocuments={Total}
-            CurrentPage={CurrentPage}
-            scopedSlots={{
-              TotalKeepingReality: (item) => {
-                return <td>{`${getDays(item.TotalKeepingReality)} ngày `}</td>;
-              },
-              SabbaticalLeave: (item) => {
-                return <td>{`${getDays(item.SabbaticalLeave)} ngày`}</td>;
-              },
-              UnSabbaticalLeave: (item) => {
-                return <td>{`${getDays(item.UnSabbaticalLeave)} ngày`}</td>;
-              },
-              SumKeeping: (item) => {
-                return <td>{`${getDays(item.SumKeeping)} ngày`}</td>;
-              },
-            }}
-          />
+          <CSidebarNav>
+            <Content
+              setCurrentPage={setCurrentPage}
+              fetchData={fetchData}
+              Loading={Loading}
+              PerPage={PerPage}
+              totalDocuments={Total}
+              CurrentPage={CurrentPage}
+              fields={fields}
+              data={ListDataTimeKeeping}
+            />
+          </CSidebarNav>
         </Paper>
       </Grid>
     </Grid>
   );
 };
 
-export default CalculateKeepingPage;
+export default PayrollPage;
 
 const fields = [
   { _style: { width: "80px" }, key: "KiCong", label: "Kì công" },
@@ -151,23 +139,13 @@ const fields = [
   {
     _style: { width: "150px" },
     key: "TotalKeepingReality",
-    label: "Ngày công thực tế",
+    label: "Số ngày công",
   },
+  //{ _style: { width: "150px" }, key: "StandardDayKeeping ", label: "Ngày công chuẩn" },
   {
     _style: { width: "150px" },
-    key: "SabbaticalLeave",
-    label: "Nghỉ có phép",
+    key: "SalaryContract",
+    label: "Hợp đồng",
   },
-  {
-    _style: { width: "150px" },
-    key: "UnSabbaticalLeave",
-    label: "Nghỉ không phép",
-  },
-  { _style: { width: "150px" }, key: "SumKeeping", label: "Tổng hợp công" },
-  { _style: { width: "250px" }, key: "Description", label: "Ghi chú" },
-  {
-    _style: { width: "150px" },
-    key: "Status",
-    label: "Trạng thái",
-  },
+  { _style: { width: "150px" }, key: "Salary", label: "Tính lương" },
 ];

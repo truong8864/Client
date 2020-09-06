@@ -27,7 +27,7 @@ const useStyles = makeStyles((theme) => ({
 const ToolBar = (props) => {
   const classes = useStyles();
 
-  //const { TongHopCong } = props;
+  const { TongHopCong } = props;
 
   return (
     <Toolbar variant="dense" disableGutters className={classes.root}>
@@ -37,7 +37,7 @@ const ToolBar = (props) => {
           label="TỔNG HỢP CÔNG"
           clickable
           className={classes.search}
-          //onClick={TongHopCong}
+          onClick={TongHopCong}
           color="primary"
         />
       </div>
