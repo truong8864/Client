@@ -1,10 +1,32 @@
+import React from "react";
 
-import CalculateKeepingPage from "../CalculateKeepingPage";
-import TimeKeepingDayPage from "../TimeKeepingDayPage";
-import TimeKeepingGroupPage from "../TimeKeepingGroupPage";
-import LeaveDayPage from "../LeaveDayPage";
+// import CalculateKeepingPage from "../CalculateKeepingPage";
+// import TimeKeepingDayPage from "../TimeKeepingDayPage";
+// import TimeKeepingGroupPage from "../TimeKeepingGroupPage";
+// import LeaveDayPage from "../LeaveDayPage";
 
+const CalculateKeepingPage = React.lazy(() =>
+  import("../CalculateKeepingPage")
+);
+const TimeKeepingDayPage = React.lazy(() => import("../TimeKeepingDayPage"));
+const TimeKeepingGroupPage = React.lazy(() =>
+  import("../TimeKeepingGroupPage")
+);
+const LeaveDayPage = React.lazy(() => import("../LeaveDayPage"));
 
+// const DanhSachNhanVien = React.lazy(() =>
+//   import("../DuLieuNhanVien/DanhSachNhanVien")
+// );
+// const NhanVienNghiViec = React.lazy(() =>
+//   import("../DuLieuNhanVien/NhanVienNghiViec")
+// );
+// const NhanVienNghiHuu = React.lazy(() =>
+//   import("../DuLieuNhanVien/NhanVienNghiHuu")
+// );
+// const TrinhDoChuyenMon = React.lazy(() =>
+//   import("../DuLieuNhanVien/TrinhDoChuyenMon")
+// );
+// const NguoiThan = React.lazy(() => import("../DuLieuNhanVien/NguoiThan"));
 
 const TimeKeepingRoute = [
   {
