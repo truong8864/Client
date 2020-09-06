@@ -2,10 +2,10 @@ import React, { Suspense, useEffect, useState } from "react";
 import { Redirect, Route, Switch } from "react-router-dom";
 import { CContainer, CFade } from "@coreui/react";
 
-import AuthenticationAPI from "../api/authentication.api";
-import OrgStructureAPI from "../api/org_structure.api";
+import AuthenticationAPI from "../api2/authentication.api";
+import OrgStructureAPI from "../api2/org_structure.api";
 
-import { CategoryProvider } from "./CategoryContext";
+import { CategoryProvider } from "./CategoryContext2";
 
 // routes config
 import routes from "../routes";

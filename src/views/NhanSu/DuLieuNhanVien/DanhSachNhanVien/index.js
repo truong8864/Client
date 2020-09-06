@@ -5,12 +5,12 @@ import { Grid, Paper } from "@material-ui/core";
 import Search from "./Search";
 import ToolBar from "./ToolBar";
 
-import ProfileAPI from "../../../../api/hre_profile.api";
+import ProfileAPI from "../../../../api2/hre_profile.api";
 
 import { makeStyles } from "@material-ui/core/styles";
 
-import Table from "../../../../share/component/Table.component";
-import YesNoDialog from "../../../../share/component/YesNoDialog";
+import Table from "../../../../share2/component/Table.component";
+import YesNoDialog from "../../../../share2/component/YesNoDialog";
 
 const useStyles = makeStyles((theme) => ({
   root: {

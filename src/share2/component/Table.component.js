@@ -44,14 +44,14 @@ const Table = (props) => {
   const classes = useStyles();
   const {
     isLoading = false,
-    items = [],
     currentPage = 1,
     limitPage = 5,
-    perPage = 1,
+    totalPage = 1,
     onPageChange,
-    scopedSlots,
     totalDocuments,
-    fields,
+    scopedSlots = {},
+    fields = [],
+    items = [],
   } = props;
 
   const BaseScopedSlots = {};
@@ -82,7 +82,7 @@ const Table = (props) => {
           underTableSlot={
             items.length <= 0 ? null : (
               <div className={"mt-2 ml-2"}>
-                {items.length <= 0 ? null : (
+                {!totalDocuments || items.length <= 0 ? null : (
                   <div className={"mt-2 mb-1 ml-2"}>
                     <b>{`${(currentPage - 1) * 25 + 1} đến ${
                       (currentPage - 1) * 25 + items.length
@@ -91,7 +91,7 @@ const Table = (props) => {
                 )}
                 <CPagination
                   activePage={currentPage}
-                  pages={perPage}
+                  pages={totalPage}
                   onActivePageChange={onPageChange}
                   limit={limitPage}
                 />

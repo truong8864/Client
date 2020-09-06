@@ -1,10 +1,12 @@
-import React from "react";
+import React, { useState } from "react";
 import PropTypes from "prop-types";
+import TextField from "@material-ui/core/TextField";
 import Autocomplete from "@material-ui/lab/Autocomplete";
 import useMediaQuery from "@material-ui/core/useMediaQuery";
 import ListSubheader from "@material-ui/core/ListSubheader";
 import { useTheme, makeStyles } from "@material-ui/core/styles";
 import { VariableSizeList } from "react-window";
+import { Typography } from "@material-ui/core";
 
 const LISTBOX_PADDING = 8; // px
 
@@ -45,11 +47,11 @@ const ListboxComponent = React.forwardRef(function ListboxComponent(
   const theme = useTheme();
   const smUp = useMediaQuery(theme.breakpoints.up("sm"), { noSsr: true });
   const itemCount = itemData.length;
-  const itemSize = smUp ? 50 : 65;
+  const itemSize = smUp ? 36 : 48;
 
   const getChildSize = (child) => {
     if (React.isValidElement(child) && child.type === ListSubheader) {
-      return 65;
+      return 48;
     }
 
     return itemSize;
@@ -113,6 +115,7 @@ export default function AutocompleteCover(props) {
     <Autocomplete
       {...props}
       size="small"
+      disableListWrap
       classes={classes}
       ListboxComponent={ListboxComponent}
       // options={}

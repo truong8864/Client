@@ -1,6 +1,6 @@
 import React from "react";
 
-import Table from "../../../share/component/Table.component";
+import Table from "../../../share2/component/Table.component";
 
 const Content = (props) => {
   const {
