@@ -16,9 +16,9 @@ import ToolBar from "./ToolBar.Component";
 import Content from "./Content.Component";
 import Detail from "./Detail.Component";
 
-import TimeKeepingGroupAPI from "../../../api/att_time_keeping_group.api";
+//import TimeKeepingGroupAPI from "../../../api/att_time_keeping_group.api";
 
-import { getDays } from "../../Staff/utils/table.utils";
+//import { getDays } from "../../Staff/utils/table.utils";
 
 const useStyles = makeStyles((theme) => ({
   root: {
@@ -53,29 +53,29 @@ const TimeKeepingGroupPage = () => {
   };
 
   const onSave = async (id, data) => {
-    const res = await TimeKeepingGroupAPI.update(id, data);
-    setRowsSelected(res.data.data);
-    const index = ListDataTimeKeeping.findIndex(
-      (item) => item._id === res.data.data._id
-    );
-    setListDataTimeKeeping([
-      ...ListDataTimeKeeping.slice(0, index),
-      res.data.data,
-      ...ListDataTimeKeeping.slice(index + 1, ListDataTimeKeeping.length),
-    ]);
+    // const res = await TimeKeepingGroupAPI.update(id, data);
+    // setRowsSelected(res.data.data);
+    // const index = ListDataTimeKeeping.findIndex(
+    //   (item) => item._id === res.data.data._id
+    // );
+    // setListDataTimeKeeping([
+    //   ...ListDataTimeKeeping.slice(0, index),
+    //   res.data.data,
+    //   ...ListDataTimeKeeping.slice(index + 1, ListDataTimeKeeping.length),
+    // ]);
   };
 
   const onDelete = async () => {
-    await TimeKeepingGroupAPI.deleteX(RowsSelected._id);
-    const index = ListDataTimeKeeping.findIndex(
-      (item) => item._id === RowsSelected._id
-    );
-    setListDataTimeKeeping([
-      ...ListDataTimeKeeping.slice(0, index),
-      ...ListDataTimeKeeping.slice(index + 1, ListDataTimeKeeping.length),
-    ]);
-    setRowsSelected(null);
-    setConfimDelete(false);
+    // await TimeKeepingGroupAPI.deleteX(RowsSelected._id);
+    // const index = ListDataTimeKeeping.findIndex(
+    //   (item) => item._id === RowsSelected._id
+    // );
+    // setListDataTimeKeeping([
+    //   ...ListDataTimeKeeping.slice(0, index),
+    //   ...ListDataTimeKeeping.slice(index + 1, ListDataTimeKeeping.length),
+    // ]);
+    // setRowsSelected(null);
+    // setConfimDelete(false);
   };
 
   const fetchData = async (page = 1) => {
@@ -89,19 +89,19 @@ const TimeKeepingGroupPage = () => {
       }
 
       setLoading(true);
-      const result = await TimeKeepingGroupAPI.get({
-        filters: filters,
-        page: page,
-      });
-      if (result.data) {
-        const { data, meta } = result;
-        const { totalDocuments, totalPages } = meta;
-        setListDataTimeKeeping(data);
-        setPerPage(totalPages);
-        setTotal(totalDocuments);
-        setLoading(false);
-        return;
-      }
+      // const result = await TimeKeepingGroupAPI.get({
+      //   filters: filters,
+      //   page: page,
+      // });
+      // if (result.data) {
+      //   const { data, meta } = result;
+      //   const { totalDocuments, totalPages } = meta;
+      //   setListDataTimeKeeping(data);
+      //   setPerPage(totalPages);
+      //   setTotal(totalDocuments);
+      //   setLoading(false);
+      //   return;
+      // }
       setListDataTimeKeeping([]);
       setLoading(false);
     } catch (error) {
@@ -125,7 +125,9 @@ const TimeKeepingGroupPage = () => {
       </Grid>
       <Grid item xs={12}>
         <Paper className={classes.toolbar} variant="outlined">
-          <ToolBar  fields={fields} data={ListDataTimeKeeping}
+          <ToolBar
+            fields={fields}
+            data={ListDataTimeKeeping}
             setConfimDelete={setConfimDelete}
             show={setShowDetail}
             onSearch={onSearch}
