@@ -1,34 +1,59 @@
 export default [
   {
-    _tag: "CSidebarNavTitle",
-    _children: ["Nhân sự"],
+    _tag: "CSidebarNavItem",
+    name: "Bảng Quản lý",
+    to: "/",
+    icon: "cil-speedometer",
+    badge: {
+      color: "info",
+      text: "HR",
+    },
   },
   {
+    _tag: "CSidebarNavTitle",
+    _children: ["NHÂN SỰ"],
+    icon: "cil-drop",
+  },
+  {
+    _tag: "CSidebarNavItem",
+    name: "Tổ chức phòng ban",
+    to: "/nhan-su/to-chuc-phong-ban",
+    icon: "cil-drop",
+  },
+  /*
+  {
+    _tag: "CSidebarNavItem",
+    name: "Nhân viên đang làm việc",
+    to: "/nhan-su/nhan-vien-dang-lam-viec",
+    icon: "cil-pencil",
+  },*/
+  {
     _tag: "CSidebarNavDropdown",
-    name: "Tổ chức nhân sự",
-    route: "/nhan-su/to-chuc-nhan-su",
-    icon: "cil-puzzle",
-    _children: [ 
+    name: "Tiếp nhận nhân viên mới",
+    to: "/nhan-su/tiep-nhan-nhan-vien-moi",
+    icon: "cil-pencil",
+    _children: [
+      // {
+      //   _tag: "CSidebarNavItem",
+      //   name: "Thêm nhân viên mới",
+      //   to: "/nhan-su/tiep-nhan-nhan-vien-moi/them-nhan-vien-moi",
+      // },
       {
         _tag: "CSidebarNavItem",
-        name: "Tổ chức phòng ban",
-        to: "/nhan-su/to-chuc-nhan-su/to-chuc-phong-ban",
+        name: "Danh sách nhân viên mới",
+        to: "/nhan-su/tiep-nhan-nhan-vien-moi/danh-sach-nhan-vien-moi",
       },
-      {
-        _tag: "CSidebarNavItem",
-        name: "Danh sách phòng ban",
-        to: "/nhan-su/to-chuc-nhan-su/danh-sach-phong-ban",
-      },]
+    ],
   },
   {
     _tag: "CSidebarNavDropdown",
     name: "Dữ liệu nhân viên",
-    route: "/nhan-su/du-lieu-nhan-vien",
-    icon: "cil-puzzle",
-    _children: [ 
+    to: "/nhan-su/du-lieu-nhan-vien",
+    icon: "cil-pencil",
+    _children: [
       {
         _tag: "CSidebarNavItem",
-        name: "Danh sách nhân viên",
+        name: "Danh sách tất cả nhân viên",
         to: "/nhan-su/du-lieu-nhan-vien/danh-sach-nhan-vien",
       },
       {
@@ -36,281 +61,167 @@ export default [
         name: "Nhân viên nghỉ việc",
         to: "/nhan-su/du-lieu-nhan-vien/nhan-vien-nghi-viec",
       },
-      {
-        _tag: "CSidebarNavItem",
-        name: "Nhân viên nghỉ hưu",
-        to: "/nhan-su/du-lieu-nhan-vien/nhan-vien-nghi-huu",
-      },
-      {
-        _tag: "CSidebarNavItem",
-        name: "Trình độ chuyên môn",
-        to: "/nhan-su/du-lieu-nhan-vien/trinh-do-chuyen-mon",
-      },
-      {
-        _tag: "CSidebarNavItem",
-        name: "Người thân",
-        to: "/nhan-su/du-lieu-nhan-vien/nguoi-than",
-      },
-    ]
+      // {
+      //   _tag: "CSidebarNavItem",
+      //   name: "Nhân viên đến tuổi nghỉ hưu",
+      //   to: "/nhan-su/du-lieu-nhan-vien/nhan-vien-huu",
+      // },
+      // {
+      //   _tag: "CSidebarNavItem",
+      //   name: "Danh sách trình độ chuyên môn",
+      //   to: "/nhan-su/du-lieu-nhan-vien/nhan-vien-nghi-viec",
+      // },
+    ],
   },
   {
     _tag: "CSidebarNavDropdown",
     name: "Hợp đồng",
-    route: "/nhan-su/hop-dong",
-    icon: "cil-puzzle",
-    _children: [ 
+    to: "/nhan-su/hop-dong",
+    icon: "cil-pencil",
+    _children: [
       {
         _tag: "CSidebarNavItem",
-        name: "DS hợp đồng nhân viên",
-        to: "/nhan-su/hop-dong",
+        name: "Tạo mới hợp đồng",
+        to: "/nhan-su/hop-dong/tao-moi-hop-dong",
+      },
+      {
+        _tag: "CSidebarNavItem",
+        name: "Danh sách hợp đồng",
+        to: "/nhan-su/hop-dong/ds-hop-dong",
+      },
+
+      {
+        _tag: "CSidebarNavItem",
+        name: "Ds nhân viên chưa có hợp đồng",
+        to: "/nhan-su/hop-dong/ds-chua-co-hop-dong",
+      },
+      {
+        _tag: "CSidebarNavItem",
+        name: "Danh sách hợp đồng hết hạn",
+        to: "/nhan-su/hop-dong/ds-hop-dong-het-han",
       },
       {
         _tag: "CSidebarNavItem",
         name: "Phụ lục hợp đồng",
-        to: "/nhan-su/phu-luc-hop-dong",
+        to: "/nhan-su/hop-dong/phu-luc-hop-dong",
       },
-    ]
+    ],
   },
   {
     _tag: "CSidebarNavDropdown",
-    name: "Qúa trình công tác",
-    route: "/base",
-    icon: "cil-puzzle",
-    _children: [ 
+    name: "Quá trình công tác",
+    to: "/nhan-su/qua-trinh-cong-tac",
+    icon: "cil-pencil",
+    _children: [
       {
         _tag: "CSidebarNavItem",
-        name: "Carousel",
-        to: "/base/carousels",
+        name: "Điều động nhân viên",
+        to: "/nhan-su/qua-trinh-cong-tac/dieu-dong-nhan-vien",
       },
-    ]
+      {
+        _tag: "CSidebarNavItem",
+        name: "Qtr điều động & bổ nhiệm",
+        to: "/nhan-su/qua-trinh-cong-tac/dieu-dong-bo-nhiem",
+      },
+    ],
   },
   {
     _tag: "CSidebarNavTitle",
     _children: ["Chấm công"],
   },
   {
-    _tag: "CSidebarNavTitle",
-    _children: ["Lương"],
-  },
-  {
-    _tag: "CSidebarNavItem",
-    name: "Dashboard",
-    to: "/dashboard",
-    icon: "cil-speedometer",
-    badge: {
-      color: "info",
-      text: "NEW",
-    },
-  },
-  {
-    _tag: "CSidebarNavTitle",
-    _children: ["Theme"],
-  },
-  {
-    _tag: "CSidebarNavItem",
-    name: "Colors",
-    to: "/theme/colors",
-    icon: "cil-drop",
-  },
-  {
-    _tag: "CSidebarNavItem",
-    name: "Typography",
-    to: "/theme/typography",
-    icon: "cil-pencil",
-  },
-  {
-    _tag: "CSidebarNavTitle",
-    _children: ["Components"],
-  },
-  {
     _tag: "CSidebarNavDropdown",
-    name: "Base",
-    route: "/base",
+    name: "Dữ liệu chấm công",
+    route: "/cham-cong",
     icon: "cil-puzzle",
     _children: [
       {
         _tag: "CSidebarNavItem",
-        name: "Breadcrumb",
-        to: "/base/breadcrumbs",
+        name: "Dữ liệu ngày công",
+        to: "/cham-cong/du-lieu-ngay-cong",
       },
       {
         _tag: "CSidebarNavItem",
-        name: "Cards",
-        to: "/base/cards",
-      },
-      {
-        _tag: "CSidebarNavItem",
-        name: "Carousel",
-        to: "/base/carousels",
-      },
-      {
-        _tag: "CSidebarNavItem",
-        name: "Collapse",
-        to: "/base/collapses",
-      },
-      {
-        _tag: "CSidebarNavItem",
-        name: "Forms",
-        to: "/base/forms",
-      },
-      {
-        _tag: "CSidebarNavItem",
-        name: "Jumbotron",
-        to: "/base/jumbotrons",
-      },
-      {
-        _tag: "CSidebarNavItem",
-        name: "List group",
-        to: "/base/list-groups",
-      },
-      {
-        _tag: "CSidebarNavItem",
-        name: "Navs",
-        to: "/base/navs",
-      },
-      {
-        _tag: "CSidebarNavItem",
-        name: "Navbars",
-        to: "/base/navbars",
-      },
-      {
-        _tag: "CSidebarNavItem",
-        name: "Pagination",
-        to: "/base/paginations",
-      },
-      {
-        _tag: "CSidebarNavItem",
-        name: "Popovers",
-        to: "/base/popovers",
-      },
-      {
-        _tag: "CSidebarNavItem",
-        name: "Progress",
-        to: "/base/progress-bar",
-      },
-      {
-        _tag: "CSidebarNavItem",
-        name: "Switches",
-        to: "/base/switches",
-      },
-      {
-        _tag: "CSidebarNavItem",
-        name: "Tables",
-        to: "/base/tables",
-      },
-      {
-        _tag: "CSidebarNavItem",
-        name: "Tabs",
-        to: "/base/tabs",
-      },
-      {
-        _tag: "CSidebarNavItem",
-        name: "Tooltips",
-        to: "/base/tooltips",
-      },
-    ],
-  },
-  {
-    _tag: "CSidebarNavDropdown",
-    name: "Buttons",
-    route: "/buttons",
-    icon: "cil-cursor",
-    _children: [
-      {
-        _tag: "CSidebarNavItem",
-        name: "Buttons",
-        to: "/buttons/buttons",
-      },
-      {
-        _tag: "CSidebarNavItem",
-        name: "Brand buttons",
-        to: "/buttons/brand-buttons",
-      },
-      {
-        _tag: "CSidebarNavItem",
-        name: "Buttons groups",
-        to: "/buttons/button-groups",
-      },
-      {
-        _tag: "CSidebarNavItem",
-        name: "Dropdowns",
-        to: "/buttons/button-dropdowns",
+        name: "Dữ liệu tổng hợp công",
+        to: "/cham-cong/du-lieu-tong-hop-cong",
       },
     ],
   },
   {
     _tag: "CSidebarNavItem",
-    name: "Charts",
-    to: "/charts",
-    icon: "cil-chart-pie",
-  },
-  {
-    _tag: "CSidebarNavDropdown",
-    name: "Icons",
-    route: "/icons",
-    icon: "cil-star",
-    _children: [
-      {
-        _tag: "CSidebarNavItem",
-        name: "CoreUI Free",
-        to: "/icons/coreui-icons",
-        badge: {
-          color: "success",
-          text: "NEW",
-        },
-      },
-      {
-        _tag: "CSidebarNavItem",
-        name: "CoreUI Flags",
-        to: "/icons/flags",
-      },
-      {
-        _tag: "CSidebarNavItem",
-        name: "CoreUI Brands",
-        to: "/icons/brands",
-      },
-    ],
-  },
-  {
-    _tag: "CSidebarNavDropdown",
-    name: "Notifications",
-    route: "/notifications",
-    icon: "cil-bell",
-    _children: [
-      {
-        _tag: "CSidebarNavItem",
-        name: "Alerts",
-        to: "/notifications/alerts",
-      },
-      {
-        _tag: "CSidebarNavItem",
-        name: "Badges",
-        to: "/notifications/badges",
-      },
-      {
-        _tag: "CSidebarNavItem",
-        name: "Modal",
-        to: "/notifications/modals",
-      },
-      {
-        _tag: "CSidebarNavItem",
-        name: "Toaster",
-        to: "/notifications/toaster",
-      },
-    ],
+    icon: "cil-puzzle",
+    name: "Tổng hợp công",
+    to: "/cham-cong/tong-hop-cong",
   },
   {
     _tag: "CSidebarNavItem",
-    name: "Widgets",
-    to: "/widgets",
-    icon: "cil-calculator",
-    badge: {
-      color: "info",
-      text: "NEW",
-    },
+    icon: "cil-puzzle",
+    name: "Nghỉ-Phép",
+    to: "/cham-cong/nghi-phep",
   },
   {
-    _tag: "CSidebarNavDivider",
+    _tag: "CSidebarNavTitle",
+    _children: ["Lương-Thuế-Bảo hiểm"],
+  },
+  {
+    _tag: "CSidebarNavDropdown",
+    name: "Lương",
+    to: "/luong",
+    icon: "cil-pencil",
+    _children: [
+      {
+        _tag: "CSidebarNavItem",
+        icon: "cil-puzzle",
+        name: "Dữ liệu lương",
+        to: "/luong/du-lieu-luong",
+      },
+      {
+        _tag: "CSidebarNavItem",
+        icon: "cil-puzzle",
+        name: "Tính lương",
+        to: "/luong/tinh-luong",
+      },
+    ],
+  },
+  {
+    _tag: "CSidebarNavDropdown",
+    name: "Thuế",
+    to: "/thue",
+    icon: "cil-pencil",
+    _children: [
+      {
+        _tag: "CSidebarNavItem",
+        icon: "cil-puzzle",
+        name: "Dữ liệu thuế",
+        to: "/thue/du-lieu-thue",
+      },
+      {
+        _tag: "CSidebarNavItem",
+        icon: "cil-puzzle",
+        name: "Tính thuế",
+        to: "/thue/tinh-thue",
+      },
+    ],
+  },
+  {
+    _tag: "CSidebarNavDropdown",
+    name: "Bảo hiểm",
+    to: "/bao-hiem",
+    icon: "cil-pencil",
+    _children: [
+      {
+        _tag: "CSidebarNavItem",
+        icon: "cil-puzzle",
+        name: "Dữ liệu bảo hiểm",
+        to: "/bao-hiem/du-lieu-bao-hiem",
+      },
+      {
+        _tag: "CSidebarNavItem",
+        icon: "cil-puzzle",
+        name: "Tính bảo hiểm",
+        to: "/bao-hiem/tinh-bao-hiem",
+      },
+    ],
   },
   {
     _tag: "CSidebarNavTitle",
@@ -354,47 +265,5 @@ export default [
     },
     addLinkClass: "c-disabled",
     disabled: true,
-  },
-  {
-    _tag: "CSidebarNavDivider",
-    className: "m-2",
-  },
-  {
-    _tag: "CSidebarNavTitle",
-    _children: ["Labels"],
-  },
-  {
-    _tag: "CSidebarNavItem",
-    name: "Label danger",
-    to: "",
-    icon: {
-      name: "cil-star",
-      className: "text-danger",
-    },
-    label: true,
-  },
-  {
-    _tag: "CSidebarNavItem",
-    name: "Label info",
-    to: "",
-    icon: {
-      name: "cil-star",
-      className: "text-info",
-    },
-    label: true,
-  },
-  {
-    _tag: "CSidebarNavItem",
-    name: "Label warning",
-    to: "",
-    icon: {
-      name: "cil-star",
-      className: "text-warning",
-    },
-    label: true,
-  },
-  {
-    _tag: "CSidebarNavDivider",
-    className: "m-2",
   },
 ];
