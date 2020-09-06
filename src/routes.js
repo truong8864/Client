@@ -1,7 +1,8 @@
 import React from "react";
 
-import RouteNhanSu from "./views/NhanSu/route";
+//import RouteNhanSu from "./views/NhanSu/route";
 import RouteTimeKeeping from "./views/TimeKeeping/routes";
+import RouteStaff from "./views/Staff/routes";
 
 const Toaster = React.lazy(() =>
   import("./views/notifications/toaster/Toaster")
@@ -64,7 +65,8 @@ const Users = React.lazy(() => import("./views/users/Users"));
 const User = React.lazy(() => import("./views/users/User"));
 
 const routes = [
-  ...RouteNhanSu,
+  //...RouteNhanSu,
+  ...RouteStaff,
   ...RouteTimeKeeping,
   { path: "/", exact: true, name: "Home" },
   { path: "/dashboard", name: "Dashboard", component: Dashboard },

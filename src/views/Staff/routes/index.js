@@ -1,40 +1,42 @@
-//import React from "react";
+import React from "react";
 
-import NewContractPage from "../ContractPage/NewContractPage";
-import OrgStructurePage from "../OrgStructurePage";
-import DetailsStaffPage from "../Staff_DetailsPage";
-import ListEmployeePage from "../EmployeeResource/ListEmployeePage";
-import EmployeeQuitPage from "../EmployeeResource/EmployeeQuitPage";
-import NotYet_ContractPage from "../ContractPage/NotYet_ContractPage";
-import ContractPage from "../ContractPage/Dashboard_ContractPage";
-import ExpireContractPage from "../ContractPage/Expire_ContractPage";
-
-import ContractExtendPage from "../ContractPage/ContractExtendPage";
-
-import ReceiveNewStaffPage from "../ReceiveNewStaff/ReceiveNewEmployee";
-import ExtendContractPage from "../ContractPage/Expire_ContractPage/extendContract.child";
-import ListNewEmployeePage from "../ReceiveNewStaff/ListNewEmployeePage";
-import CollaboratePage from "../CollaboratePage";
-import NewCollaboratePage from "../CollaboratePage/add";
-//import UpdateCollaboratePage from "../CollaboratePage/update";
-
-/*
 const NewContractPage = React.lazy(() =>
   import("../ContractPage/NewContractPage")
 );
 const OrgStructurePage = React.lazy(() => import("../OrgStructurePage"));
-const NotYet_ContractPage = React.lazy(() =>
-  import("../ContractPage/NotYet_ContractPage")
-);
 const DetailsStaffPage = React.lazy(() => import("../Staff_DetailsPage"));
-const ContractPage = React.lazy(() =>
-  import("../ContractPage/Dashboard_ContractPage")
-);
-
 const ListEmployeePage = React.lazy(() =>
   import("../EmployeeResource/ListEmployeePage")
 );
-*/
+const EmployeeQuitPage = React.lazy(() =>
+  import("../EmployeeResource/EmployeeQuitPage")
+);
+const NotYet_ContractPage = React.lazy(() =>
+  import("../ContractPage/NotYet_ContractPage")
+);
+const ContractPage = React.lazy(() =>
+  import("../ContractPage/Dashboard_ContractPage")
+);
+const ExpireContractPage = React.lazy(() =>
+  import("../ContractPage/Expire_ContractPage")
+);
+
+const ContractExtendPage = React.lazy(() =>
+  import("../ContractPage/ContractExtendPage")
+);
+
+const ReceiveNewStaffPage = React.lazy(() =>
+  import("../ReceiveNewStaff/ReceiveNewEmployee")
+);
+const ExtendContractPage = React.lazy(() =>
+  import("../ContractPage/Expire_ContractPage/extendContract.child")
+);
+const ListNewEmployeePage = React.lazy(() =>
+  import("../ReceiveNewStaff/ListNewEmployeePage")
+);
+const CollaboratePage = React.lazy(() => import("../CollaboratePage"));
+const NewCollaboratePage = React.lazy(() => import("../CollaboratePage/add"));
+
 const staffRoute = [
   {
     path: "/nhan-su",
