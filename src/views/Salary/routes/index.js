@@ -1,7 +1,5 @@
-
-import PayrollPage from "../PayrollPage";
-import SalaryPage from "../SalaryPage";
-
+const PayrollPage = React.lazy(() => import("../PayrollPage"));
+const SalaryPage = React.lazy(() => import("../SalaryPage"));
 
 const SalaryRoute = [
   {
