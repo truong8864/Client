@@ -4,9 +4,9 @@ import { makeStyles } from "@material-ui/core/styles";
 
 import { Grid, Paper } from "@material-ui/core";
 
-import Search from "./Search.Component";
-import ToolBar from "./ToolBar.Component";
-import Content from "./Content.Component";
+// import Search from "./Search.Component";
+// import ToolBar from "./ToolBar.Component";
+// import Content from "./Content.Component";
 
 // import DayKeepingAPI from "../../../api/att_day_keeping.api";
 // import TimeKeepingGroupAPI from "../../../api/att_time_keeping_group.api";
@@ -92,47 +92,50 @@ const CalculateKeepingPage = () => {
 
   return (
     <Grid container className={classes.root}>
-      <Grid item xs={12}>
-        <Paper className={classes.search}>
-          {<Search Filter={Filter} setFilter={setFilter} />}
-        </Paper>
-      </Grid>
-      <Grid item xs={12}>
-        <Paper className={classes.toolbar} variant="outlined">
-          <ToolBar TongHopCong={TongHopCong} />
-        </Paper>
-      </Grid>
+      {"hahaha "}
 
-      <Grid item xs={12}>
-        <Paper className={classes.content}>
-          {
-            // <Content
-            //   fields={fields}
-            //   data={ListDataTimeKeeping}
-            //   setCurrentPage={setCurrentPage}
-            //   fetchData={fetchData}
-            //   Loading={Loading}
-            //   PerPage={PerPage}
-            //   totalDocuments={Total}
-            //   CurrentPage={CurrentPage}
-            //   scopedSlots={{
-            //     TotalKeepingReality: (item) => {
-            //       return <td>{`${getDays(item.TotalKeepingReality)} ngày `}</td>;
-            //     },
-            //     SabbaticalLeave: (item) => {
-            //       return <td>{`${getDays(item.SabbaticalLeave)} ngày`}</td>;
-            //     },
-            //     UnSabbaticalLeave: (item) => {
-            //       return <td>{`${getDays(item.UnSabbaticalLeave)} ngày`}</td>;
-            //     },
-            //     SumKeeping: (item) => {
-            //       return <td>{`${getDays(item.SumKeeping)} ngày`}</td>;
-            //     },
-            //   }}
-            // />
-          }
-        </Paper>
-      </Grid>
+      {
+        // <Grid item xs={12}>
+        //   <Paper className={classes.search}>
+        //     {<Search Filter={Filter} setFilter={setFilter} />}
+        //   </Paper>
+        // </Grid>
+        // <Grid item xs={12}>
+        //   <Paper className={classes.toolbar} variant="outlined">
+        //     <ToolBar TongHopCong={TongHopCong} />
+        //   </Paper>
+        // </Grid>
+        // <Grid item xs={12}>
+        //   <Paper className={classes.content}>
+        //     {
+        //       // <Content
+        //       //   fields={fields}
+        //       //   data={ListDataTimeKeeping}
+        //       //   setCurrentPage={setCurrentPage}
+        //       //   fetchData={fetchData}
+        //       //   Loading={Loading}
+        //       //   PerPage={PerPage}
+        //       //   totalDocuments={Total}
+        //       //   CurrentPage={CurrentPage}
+        //       //   scopedSlots={{
+        //       //     TotalKeepingReality: (item) => {
+        //       //       return <td>{`${getDays(item.TotalKeepingReality)} ngày `}</td>;
+        //       //     },
+        //       //     SabbaticalLeave: (item) => {
+        //       //       return <td>{`${getDays(item.SabbaticalLeave)} ngày`}</td>;
+        //       //     },
+        //       //     UnSabbaticalLeave: (item) => {
+        //       //       return <td>{`${getDays(item.UnSabbaticalLeave)} ngày`}</td>;
+        //       //     },
+        //       //     SumKeeping: (item) => {
+        //       //       return <td>{`${getDays(item.SumKeeping)} ngày`}</td>;
+        //       //     },
+        //       //   }}
+        //       // />
+        //     }
+        //   </Paper>
+        //   </Grid>
+      }
     </Grid>
   );
 };

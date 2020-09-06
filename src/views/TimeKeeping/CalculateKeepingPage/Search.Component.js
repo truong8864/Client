@@ -74,64 +74,62 @@ const Search = (props) => {
           //     fullWidth
           //   />
           // </Grid>
+          // <Grid item xs={3}>
+          //   Phòng ban
+          //   {
+          //     <AutocompleteCover
+          //       options={Category.ListOrgStructure}
+          //       onChange={(event, item) => {
+          //         if (item)
+          //           return setFilter({
+          //             ...Filter,
+          //             ...{ OrgStructureID: item.ID },
+          //           });
+          //         const { OrgStructureID, ...FilterNew } = Filter;
+          //         setFilter(FilterNew);
+          //       }}
+          //       getOptionLabel={(option) =>
+          //         `${option.OrgStructureName}-${option.Code}`
+          //       }
+          //       renderOption={(option) => (
+          //         <Typography>{`${option.Code} - ${option.OrgStructureName}`}</Typography>
+          //       )}
+          //       renderInput={(params) => (
+          //         <TextField {...params} size="small" variant="outlined" />
+          //       )}
+          //     />
+          //   }
+          // </Grid>
+          // <Grid item xs={3}>
+          //   <FormControl fullWidth>
+          //     Kì công
+          //     <MuiPickersUtilsProvider utils={DateFnsUtils}>
+          //       <div>
+          //         <KeyboardDatePicker
+          //           inputVariant="outlined"
+          //           // clearable
+          //           size="small"
+          //           fullWidth={false}
+          //           emptyLabel="Kì công"
+          //           views={["year", "month"]}
+          //           maxDate={MaxMonth}
+          //           format="MM/yyyy"
+          //           value={!Filter.KiCong ? MaxMonth : Filter.KiCong}
+          //           onChange={(date) => {
+          //             if (date)
+          //               return setFilter({
+          //                 ...Filter,
+          //                 ...{ KiCong: date },
+          //               });
+          //             const { KiCong, ...FilterNew } = Filter;
+          //             setFilter(FilterNew);
+          //           }}
+          //         />
+          //       </div>
+          //     </MuiPickersUtilsProvider>
+          //   </FormControl>
+          //   </Grid>
         }
-
-        <Grid item xs={3}>
-          Phòng ban
-          {
-            <AutocompleteCover
-              options={Category.ListOrgStructure}
-              onChange={(event, item) => {
-                if (item)
-                  return setFilter({
-                    ...Filter,
-                    ...{ OrgStructureID: item.ID },
-                  });
-                const { OrgStructureID, ...FilterNew } = Filter;
-                setFilter(FilterNew);
-              }}
-              getOptionLabel={(option) =>
-                `${option.OrgStructureName}-${option.Code}`
-              }
-              renderOption={(option) => (
-                <Typography>{`${option.Code} - ${option.OrgStructureName}`}</Typography>
-              )}
-              renderInput={(params) => (
-                <TextField {...params} size="small" variant="outlined" />
-              )}
-            />
-          }
-        </Grid>
-
-        <Grid item xs={3}>
-          <FormControl fullWidth>
-            Kì công
-            <MuiPickersUtilsProvider utils={DateFnsUtils}>
-              <div>
-                <KeyboardDatePicker
-                  inputVariant="outlined"
-                  // clearable
-                  size="small"
-                  fullWidth={false}
-                  emptyLabel="Kì công"
-                  views={["year", "month"]}
-                  maxDate={MaxMonth}
-                  format="MM/yyyy"
-                  value={!Filter.KiCong ? MaxMonth : Filter.KiCong}
-                  onChange={(date) => {
-                    if (date)
-                      return setFilter({
-                        ...Filter,
-                        ...{ KiCong: date },
-                      });
-                    const { KiCong, ...FilterNew } = Filter;
-                    setFilter(FilterNew);
-                  }}
-                />
-              </div>
-            </MuiPickersUtilsProvider>
-          </FormControl>
-        </Grid>
       </Grid>
     </Grid>
   );
