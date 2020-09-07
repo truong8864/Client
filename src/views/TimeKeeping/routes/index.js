@@ -1,13 +1,18 @@
 import React from "react";
 
-const CalculateKeepingPage = React.lazy(() =>
-  import("../CalculateKeepingPage")
-);
-const TimeKeepingDayPage = React.lazy(() => import("../TimeKeepingDayPage"));
-const TimeKeepingGroupPage = React.lazy(() =>
-  import("../TimeKeepingGroupPage")
-);
-const LeaveDayPage = React.lazy(() => import("../LeaveDayPage"));
+import CalculateKeepingPage from "../CalculateKeepingPage";
+import TimeKeepingDayPage from "../TimeKeepingDayPage";
+import TimeKeepingGroupPage from "../TimeKeepingGroupPage";
+import LeaveDayPage from "../LeaveDayPage";
+
+// const CalculateKeepingPage = React.lazy(() =>
+//   import("../CalculateKeepingPage")
+// );
+// const TimeKeepingDayPage = React.lazy(() => import("../TimeKeepingDayPage"));
+// const TimeKeepingGroupPage = React.lazy(() =>
+//   import("../TimeKeepingGroupPage")
+// );
+// const LeaveDayPage = React.lazy(() => import("../LeaveDayPage"));
 
 const TimeKeepingRoute = [
   {
