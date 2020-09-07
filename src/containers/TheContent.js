@@ -14,19 +14,19 @@ const PrivateRoute = ({
   setIsLogged,
   ...rest
 }) => {
-  useEffect(() => {
-    const fetchAPI = async () => {
-      try {
-        const res = await AuthenticationAPI.checkLogged();
-        if ("DA_DANG_NHAP" === res.message) return setIsLogged(true);
-        else setIsLogged(false);
-      } catch (error) {
-        setIsLogged(false);
-        console.log("TheContent AuthenticationAPI ERR");
-      }
-    };
-    fetchAPI();
-  }, [setIsLogged]);
+  // useEffect(() => {
+  //   const fetchAPI = async () => {
+  //     try {
+  //       const res = await AuthenticationAPI.checkLogged();
+  //       if ("DA_DANG_NHAP" === res.message) return setIsLogged(true);
+  //       else setIsLogged(false);
+  //     } catch (error) {
+  //       setIsLogged(false);
+  //       console.log("TheContent AuthenticationAPI ERR");
+  //     }
+  //   };
+  //   fetchAPI();
+  // }, [setIsLogged]);
 
   return (
     <Route
