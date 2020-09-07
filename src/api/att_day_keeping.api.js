@@ -25,10 +25,23 @@ const synthesis = (params) => {
   return axiosClient.post(url, params);
 };
 
-const uploadData = (data) => {
-  //const url = "/day-keepings/upload";
-  console.log(data);
-  //return axiosClient.post(url, params);
+const calculate = (params) => {
+  const url = "/day-keepings/calculate";
+  return axiosClient.get(url, { params });
 };
 
-export default { get, create, update, remove, synthesis, uploadData };
+const uploadData = (data) => {
+  const url = "/day-keepings/upload";
+  console.log(data);
+  return axiosClient.post(url, data);
+};
+
+export default {
+  get,
+  create,
+  update,
+  remove,
+  synthesis,
+  uploadData,
+  calculate,
+};

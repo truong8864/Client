@@ -61,9 +61,9 @@ const ToolBar = (props) => {
     fields,
   } = props;
 
-  const checkCalculate = () => {
-    return RowsSelected.some((element) => element.Status !== "DA_TINH_CONG");
-  };
+  // const checkCalculate=()=>{
+  //   return RowsSelected.some((element)=>element.Status!=="DA_TINH_CONG")
+  // }
 
   return (
     <Toolbar variant="dense" disableGutters className={classes.root}>
@@ -94,7 +94,7 @@ const ToolBar = (props) => {
             icon={<ExposureIcon />}
             label="TÍNH NGÀY CÔNG"
             clickable
-            disabled={!checkCalculate()}
+            // disabled={!checkCalculate()}
             className={classes.search}
             color="primary"
           />
@@ -133,17 +133,18 @@ const ToolBar = (props) => {
           </IconButton>
         </div>
         <div className={classes.setting}>
-          <CSVLink
-            headers={fields}
-            data={data}
-            filename={"du-lieu-ngay-cong.csv"}
-          >
-            <IconButton>
-              <Tooltip title="Export">
+          <IconButton>
+            <Tooltip title="Export">
+              <CSVLink
+                headers={fields}
+                data={data}
+                filename={"du-lieu-ngay-cong.csv"}
+              >
                 <SaveAltIcon />
-              </Tooltip>
-            </IconButton>
-          </CSVLink>
+              </CSVLink>
+            </Tooltip>
+          </IconButton>
+
           <IconButton>
             <Tooltip title="Cài đặt hiển thị">
               <SettingsIcon />

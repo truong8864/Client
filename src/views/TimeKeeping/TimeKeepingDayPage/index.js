@@ -102,16 +102,17 @@ const TimeKeepingDayPage = () => {
     reload();
   };
   const onCalculateTimeKeeping = async () => {
+    alert("haha");
+    setLoading(true);
     // const listCalculate = RowsSelected.filter((item) => {
     //   return "DA_TINH_CONG" !== item.Status;
     // });
-    // await DayKeepingAPI.calculateTimeKeeping({
-    //   listCalculate: listCalculate.map((item) => item._id),
-    // });
-    setRowsSelected(
-      RowsSelected.filter((item) => item.Status === "DA_TINH_CONG")
-    );
+    await DayKeepingAPI.calculate({
+      filters: Filter,
+    });
+    setRowsSelected([]);
     reload();
+    setLoading(false);
   };
 
   return (
@@ -130,8 +131,9 @@ const TimeKeepingDayPage = () => {
       </Grid>
       <Grid item xs={12}>
         <Paper className={classes.toolbar} variant="outlined">
-          <ToolBar data={ListDataTimeKeeping} fields={fields}
-
+          <ToolBar
+            data={ListDataTimeKeeping}
+            fields={fields}
             setConfimDelete={setConfimDelete}
             show={setOption}
             onCalculateTimeKeeping={onCalculateTimeKeeping}

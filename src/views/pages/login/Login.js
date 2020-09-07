@@ -1,8 +1,8 @@
-import React from "react";
+import React, { useState } from "react";
+import { useHistory, useLocation } from "react-router-dom";
+import { makeStyles } from "@material-ui/core/styles";
+import Alert from "@material-ui/lab/Alert";
 
-import authentication from "../../../api/authentication.api";
-
-import { Link, useHistory, useLocation } from "react-router-dom";
 import {
   CButton,
   CCard,
@@ -19,6 +19,10 @@ import {
 } from "@coreui/react";
 import CIcon from "@coreui/icons-react";
 
+import AuthenticationAPI from "../../../api/authentication.api";
+
+//import { LoginAPI } from "../../../callAPI/Authentication.api";
+
 const Login = (props) => {
   const { setIsLogged } = props;
 
@@ -26,19 +30,69 @@ const Login = (props) => {
   const location = useLocation();
   const { from } = location.state || { from: { pathname: "/" } };
 
-  const onLogin = async () => {
-    const res = await authentication.login({
-      username: "truong8864",
-      password: "thienthan1",
-    });
+  const [name, setname] = useState("");
+  const [pass, setPass] = useState("");
 
-    console.log(res);
+  const [err, setErr] = useState("tk:truong8864 mk: thienthan1");
 
-    if (res.message && "LOGIN_THANH_CONG" === res.message) {
-      setIsLogged(true);
-      history.replace(from);
+  const up_Name = (e) => {
+    setname(e.target.value);
+  };
+  const up_Pass = (e) => {
+    setPass(e.target.value);
+  };
+  const useStyles = makeStyles((theme) => ({
+    root: {
+      width: "100%",
+      "& > * + *": {
+        marginTop: theme.spacing(2),
+      },
+    },
+  }));
+
+  const onLogin = async (event) => {
+    event.preventDefault();
+    try {
+      const res = await AuthenticationAPI.login({
+        username: name, //"truong8864",
+        password: pass, // "thienthan1",
+      });
+      console.log(res);
+      if (res.message && "LOGIN_THANH_CONG" === res.message) {
+        setIsLogged(true);
+        return history.replace(from);
+      }
+      setErr("Đăng nhập không thành công");
+    } catch (error) {
+      setErr("Lỗi đăng nhập");
     }
   };
+
+  // const On_login = (event) => {
+  //   if (name.trim() !== "" && pass.trim() !== "") {
+  //     LoginAPI(
+  //       qs.stringify({
+  //         username: name,
+  //         password: pass,
+  //       })
+  //     ).then((res) => {
+  //       if (res.data && res.data.accessToken && res.data.login === "success") {
+  //         localStorage.setItem("token", res.data.accessToken);
+  //         localStorage.setItem("RefreshToken", res.data.refreshToken);
+  //         localStorage.setItem("username", name);
+  //         console.log(localStorage.getItem("token"));
+  //         setisRedirect(true);
+  //         return;
+  //       }
+  //       setErr(res.data.err);
+  //     });
+  //   }
+  //   event.preventDefault();
+  // };
+
+  // isRedirect ? (
+  //   <Redirect to="/" />
+  // ) :
 
   return (
     <div className="c-app c-default-layout flex-row align-items-center">
@@ -48,8 +102,15 @@ const Login = (props) => {
             <CCardGroup>
               <CCard className="p-4">
                 <CCardBody>
-                  <CForm>
+                  <CForm onSubmit={onLogin}>
                     <h1>Login</h1>
+                    {err !== "" ? (
+                      <div className={useStyles.root}>
+                        <Alert severity="error">{err} - check it out</Alert>
+                      </div>
+                    ) : (
+                      ""
+                    )}
                     <p className="text-muted">Sign In to your account</p>
                     <CInputGroup className="mb-3">
                       <CInputGroupPrepend>
@@ -58,9 +119,11 @@ const Login = (props) => {
                         </CInputGroupText>
                       </CInputGroupPrepend>
                       <CInput
+                        onChange={up_Name}
                         type="text"
                         placeholder="Username"
                         autoComplete="username"
+                        required="required"
                       />
                     </CInputGroup>
                     <CInputGroup className="mb-4">
@@ -70,18 +133,16 @@ const Login = (props) => {
                         </CInputGroupText>
                       </CInputGroupPrepend>
                       <CInput
+                        onChange={up_Pass}
                         type="password"
                         placeholder="Password"
                         autoComplete="current-password"
+                        required="required"
                       />
                     </CInputGroup>
                     <CRow>
                       <CCol xs="6">
-                        <CButton
-                          onClick={onLogin}
-                          color="primary"
-                          className="px-4"
-                        >
+                        <CButton color="primary" className="px-4" type="submit">
                           Login
                         </CButton>
                       </CCol>
@@ -100,22 +161,13 @@ const Login = (props) => {
               >
                 <CCardBody className="text-center">
                   <div>
-                    <h2>Sign up</h2>
+                    <h2>Phong Phu International</h2>
                     <p>
-                      Lorem ipsum dolor sit amet, consectetur adipisicing elit,
-                      sed do eiusmod tempor incididunt ut labore et dolore magna
-                      aliqua.
+                      We are also interested in venturing with foreign
+                      manufacturers in term of technology know-how and marketing
+                      alliance to take advantage of Vietnam recent emerging as
+                      new textile sourcing center in Asia.
                     </p>
-                    <Link to="/register">
-                      <CButton
-                        color="primary"
-                        className="mt-3"
-                        active
-                        tabIndex={-1}
-                      >
-                        Register Now!
-                      </CButton>
-                    </Link>
                   </div>
                 </CCardBody>
               </CCard>

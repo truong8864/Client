@@ -14,7 +14,7 @@ import { CSVLink } from "react-csv";
 
 import { csv } from "d3";
 
-//import DayKeeingAPI from "../../../api/att_day_keeping.api";
+import DayKeepingAPI from "../../../api/att_day_keeping.api";
 
 const useStyles = makeStyles((theme) => ({
   root: {
@@ -58,10 +58,11 @@ const FileUpload = (props) => {
   const onUpload = async (event) => {
     let i = 0;
     while (i <= DataImport.length) {
-     // const DataUpload = DataImport.slice(i, i + 1000);
-      //const res = await DayKeeingAPI.uploadData(DataUpload);
+      const DataUpload = DataImport.slice(i, i + 1000);
+      await DayKeepingAPI.uploadData({ data: DataUpload });
       i = i + 1000;
     }
+    alert("Đã tải lên");
   };
 
   return (
